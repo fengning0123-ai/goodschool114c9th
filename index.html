@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>114C國三</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!doctype html>
+<!doctype html>
 <html lang="zh-TW">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>114國三總複習C階段與模考衝刺班</title>
+  <title>114國三總複習C階段與模考衝刺班 - 報名系統</title>
   <script src="/_sdk/element_sdk.js"></script>
   <style>
     body {
@@ -26,6 +15,14 @@
       min-height: 100%;
     }
 
+    html, body {
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     .checkbox-custom {
       width: 20px;
       height: 20px;
@@ -34,539 +31,510 @@
     }
 
     .subject-card {
-      background: white;
-      transition: all 0.2s;
-    }
-
-    .subject-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .subject-card.selected {
-      background: #eff6ff;
-      border: 2px solid #3b82f6;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+      border-color: #3b82f6;
+    }
+
+    .mocktest-addon-grid,
+    .payment-methods-grid,
+    .summary-grid {
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .mocktest-addon-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .payment-methods-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body>
-  <div style="max-width: 1400px; margin: 0 auto; padding: 24px; width: 100%;">
-   <header style="background: white; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-    <h1 id="main-title" style="font-size: 2.5rem; font-weight: 900; color: #1e40af; margin-bottom: 12px; line-height: 1.2;">114國三總複習C階段與模考衝刺班</h1>
-    <p id="subtitle" style="font-size: 1.25rem; color: #64748b; font-weight: 600; margin-bottom: 20px;">系統複習 × 模考實戰 × 標靶分析</p><!-- 激勵標語 -->
-    <div style="display: grid; gap: 12px; margin-top: 20px;">
-     <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); padding: 16px 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
-      <div style="font-size: 1.125rem; font-weight: 700; color: white; line-height: 1.6;">
-       💪 讓專業的師資群，帶領著你們朝著目標前進
-      </div>
-     </div>
-     <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 16px 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
-      <div style="font-size: 1.125rem; font-weight: 700; color: white; line-height: 1.6;">
-       ✨ 今日的努力成就明天的璀璨，明天的你會感謝今天自己的付出
-      </div>
-     </div>
-    </div>
-   </header><!-- 課程時間表 -->
-   <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 16px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">📅 課程時間表</h2><!-- 圖例 -->
-    <div style="display: flex; gap: 16px; margin-bottom: 16px; padding: 12px; background: #f8fafc; border-radius: 6px;">
-     <div style="display: flex; align-items: center; gap: 6px;">
-      <div style="width: 16px; height: 16px; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 3px;"></div><span style="font-size: 0.9rem; font-weight: 600; color: #92400e;">模考時間</span>
-     </div>
-     <div style="display: flex; align-items: center; gap: 6px;">
-      <div style="width: 16px; height: 16px; background: #dbeafe; border: 2px solid #3b82f6; border-radius: 3px;"></div><span style="font-size: 0.9rem; font-weight: 600; color: #1e40af;">總複習課程</span>
-     </div>
-    </div><!-- 課程表格 -->
-    <div style="overflow-x: auto;">
-     <table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-      <thead>
-       <tr style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">
-        <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem; border-right: 1px solid rgba(255,255,255,0.2);">星期</th>
-        <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem; border-right: 1px solid rgba(255,255,255,0.2);">時間</th>
-        <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem;">課程內容</th>
-       </tr>
-      </thead>
-      <tbody><!-- 星期一 -->
-       <tr style="background: #fef3c7;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期一</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">18:00 - 21:00</td>
-        <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
-         <div style="font-weight: 700; margin-bottom: 4px;">
-          🎯 自然模考 / 數學模考
-         </div>
-         <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
-          最完整版本 × 最新素養題型
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 6px;">
-          💡 <strong>自然模考策略：</strong>針對實作實驗題練習分析圖表與變因，關注氣候變遷、能源環保等生活議題
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
-          💡 <strong>數學模考策略：</strong>強化課綱題加深加廣的複習，練習歷屆試題，掌握各主題核心素養，長篇閱讀及分析題型重點
-         </div></td>
-       </tr><!-- 星期二 -->
-       <tr style="background: #fef3c7;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期二</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">18:00 - 21:00</td>
-        <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
-         <div style="font-weight: 700; margin-bottom: 4px;">
-          🎯 自習 / 社會模考
-         </div>
-         <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
-          跨領域結合 × 核心素養題型
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 6px;">
-          💡 <strong>社會模考策略：</strong>台灣史地（地緣、氣候、人口）、公民時事議題（五院職權、社會議題）、世界史地經緯度 | 結合地理與歷史畫地圖，熟悉世界地圖判讀，詳讀所有選項
-         </div></td>
-       </tr><!-- 星期三 -->
-       <tr style="background: #dbeafe;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期三</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
-        <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
-         <div style="font-weight: 700; margin-bottom: 6px;">
-          📚 英文總複習課程
-         </div>
-         <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
-          📌 <strong>重點：</strong>單字與文法（時態、主被動、子句）、長篇閱讀題組
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
-          📌 <strong>衝刺重點：</strong>聽力、克漏字、長篇閱讀速度 | 每日聽力練習，整理錯題文法，熟悉題組題
-         </div></td>
-       </tr><!-- 星期四 -->
-       <tr style="background: #dbeafe;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期四</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
-        <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
-         <div style="font-weight: 700; margin-bottom: 6px;">
-          📚 社會總複習課程
-         </div>
-         <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
-          📌 <strong>重點：</strong>台灣歷史與地理（在地化）、世界氣候與人口、公民議題（少子化、家庭、五院互動）
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
-          📌 <strong>衝刺重點：</strong>台灣史地（地緣、氣候、人口）、公民時事議題（五院職權、社會議題）、世界史地經緯度 | 結合地理與歷史畫地圖，熟悉世界地圖判讀，詳讀所有選項
-         </div></td>
-       </tr><!-- 星期五 -->
-       <tr style="background: #dbeafe;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期五</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
-        <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
-         <div style="font-weight: 700; margin-bottom: 6px;">
-          📚 國文總複習課程
-         </div>
-         <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
-          📌 <strong>重點：</strong>閱讀理解（跨領域、圖表、轉折詞）、作文架構與開頭、文言文、白話文題組
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
-          📌 <strong>衝刺練習：</strong>每日練習素養題，寫作練習開頭段落，多閱讀報章雜誌
-         </div></td>
-       </tr><!-- 星期六 下午 -->
-       <tr style="background: #fef3c7;">
-        <td rowspan="2" style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期六</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">14:00 - 17:00</td>
-        <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
-         <div style="font-weight: 700; margin-bottom: 4px;">
-          🎯 國文模考 / 英文模考
-         </div>
-         <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
-          最新時事議題盡收眼底
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
-          💡 <strong>國文模考策略：</strong>閱讀理解（跨領域、圖表、轉折詞）、素養題的實戰，寫作練習開頭段落，技巧式的閱讀報章雜誌與分析重點
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
-          💡 <strong>英文模考策略：</strong>聽力、克漏字、長篇閱讀速度 | 模考內包含聽力練習，整理錯題文法，熟悉題組題
-         </div></td>
-       </tr><!-- 星期六 晚上 -->
-       <tr style="background: #dbeafe;">
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:20</td>
-        <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
-         <div style="font-weight: 700; margin-bottom: 6px;">
-          📚 自然總複習課程
-         </div>
-         <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
-          📌 <strong>重點：</strong>實驗與探究能力、數據資料判讀、生活應用、跨科題
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
-          📌 <strong>衝刺重點：</strong>圖表分析、實驗概念、探究與實作題 | 每週練習探究題，整理實驗步驟，將錯題與課本連結
-         </div></td>
-       </tr><!-- 星期日 -->
-       <tr style="background: #dbeafe;">
-        <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期日</td>
-        <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">09:00 - 12:00</td>
-        <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
-         <div style="font-weight: 700; margin-bottom: 6px;">
-          📚 數學總複習課程
-         </div>
-         <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
-          📌 <strong>重點：</strong>基本概念、公式運用、圖表分析
-         </div>
-         <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
-          📌 <strong>衝刺重點：</strong>應用題、圖表題、非選題 | 每天練非選題，複習公式，做考古題找出弱點
-         </div></td>
-       </tr>
-      </tbody>
-     </table>
-    </div><!-- 共同策略 -->
-    <div style="margin-top: 24px; padding: 20px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 10px; border-left: 4px solid #0ea5e9;">
-     <h3 style="font-size: 1.125rem; font-weight: 700; color: #0c4a6e; margin-bottom: 14px;">🚀 共同衝刺策略</h3>
-     <div style="display: grid; gap: 8px; font-size: 0.9rem; color: #0c4a6e;">
-      <div style="padding: 8px; background: white; border-radius: 6px;">
-       ✅ 善用歷屆試題：刷考古題，熟悉題型，找出弱點
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 6px;">
-       ✅ 連結錯題與概念：將錯題連回課本，理解核心概念
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 6px;">
-       ✅ 注重非選題：非選題是衝刺高分的關鍵
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 6px;">
-       ✅ 掌握答題技巧：國文注意轉折詞，社會用首尾縫合法，英文與自然題幹細節
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 6px;">
-       ✅ 結合時事與跨科：社會與自然常考近年議題與跨領域內容
-      </div>
-     </div>
-    </div>
-   </div><!-- 時間線圖 (橫格版本) -->
-   <div style="background: white; border-radius: 12px; padding: 32px 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 24px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">📅 重要時程表</h2><!-- 時間線容器 -->
-    <div style="max-width: 1200px; margin: 0 auto;">
-     <div style="display: flex; flex-direction: column; gap: 12px;"><!-- 1/10 前預報 -->
-      <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #fbbf24; box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #92400e; font-size: 1.125rem; min-width: 140px;">
-         1/10(六)前
-        </div>
-        <div style="font-size: 1rem; color: #78350f; font-weight: 700;">
-         預報優惠
-        </div>
-       </div>
-      </div><!-- 1/20 全額繳清 -->
-      <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #3b82f6; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #1e40af; font-size: 1.125rem; min-width: 140px;">
-         1/20(一)前
-        </div>
-        <div style="font-size: 1rem; color: #1e3a8a; font-weight: 700;">
-         全額繳清優惠
-        </div>
-       </div>
-      </div><!-- 自習教室1 -->
-      <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
-         1/26(一)~1/30(五)
-        </div>
-        <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
-         自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;">  1對1個別輔導</span>
-        </div>
-       </div>
-      </div><!-- 自習教室2 -->
-      <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
-         2/2(一)~2/6(五)
-        </div>
-        <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
-         自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;">  1對1個別輔導</span>
-        </div>
-       </div>
-      </div><!-- 第三次模考 -->
-      <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ec4899; box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #be185d; font-size: 1.125rem; min-width: 140px;">
-         2/9(一)~2/10(二)
-        </div>
-        <div style="font-size: 1rem; color: #db2777; font-weight: 700;">
-         第三次模考 (B1~B5)
-        </div>
-       </div>
-      </div><!-- 自習教室3 -->
-      <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
-         2/11(三)~2/12(四)
-        </div>
-        <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
-         自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;">  1對1個別輔導</span>
-        </div>
-       </div>
-      </div><!-- 農曆年假 -->
-       <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ef4444; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #991b1b; font-size: 1.125rem; min-width: 140px;">
-         2/13(五)~2/22(日)
-        </div>
-        <div style="font-size: 1rem; color: #dc2626; font-weight: 700;">
-         農曆年假 (共10天)
-        </div>
-       </div>
-      </div><!-- 第四次模考 -->
-      <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ec4899; box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #be185d; font-size: 1.125rem; min-width: 140px;">
-         4月中
-        </div>
-        <div style="font-size: 1rem; color: #db2777; font-weight: 700;">
-         第四次模考 (B1~B6)
-        </div>
-       </div>
-      </div><!-- 5/12 課程結束 -->
-      <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #047857; font-size: 1.125rem; min-width: 140px;">
-         5/12(二)
-        </div>
-        <div style="font-size: 1rem; color: #059669; font-weight: 700;">
-         課程結束
-        </div>
-       </div>
-      </div><!-- 自習教室4 -->
-      <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
-         5/13(三)~5/15(五)
-        </div>
-        <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
-         開放全天自習教室
-        </div>
-         </div>
-       </div><!-- 5/16、17 國中會考 -->
-      <div style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); padding: 20px 24px; border-radius: 10px; border-left: 8px solid #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.4);">
-       <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="font-weight: 900; color: #854d0e; font-size: 1.25rem; min-width: 140px;">
-         5/16(六)、17(日)
-        </div>
-        <div style="font-size: 1.125rem; color: #a16207; font-weight: 800;">
-         🎯 國中會考
-        </div>
-       </div>
-      </div>
-     </div>
-    </div><!-- 視覺化時間軸圖表 -->
-    <div style="margin-top: 40px; padding-top: 32px; border-top: 2px solid #e5e7eb;">
-     <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e40af; margin-bottom: 20px; text-align: center;">📊 時間軸視覺圖</h3><!-- 月份標籤 -->
-     <div style="display: flex; margin-bottom: 8px; padding: 0 4px;">
-      <div style="width: 9.11%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       12月中
-      </div>
-      <div style="width:5.44%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       1月
-      </div>
-      <div style="width: 30.78%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       2月
-      </div>
-      <div style="width: 10.44%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       3月
-      </div>
-      <div style="width: 30.89%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       4月
-      </div>
-      <div style="width: 10.33%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
-       5月
-      </div>
-     </div><!-- 時間軸容器 - 堆疊版本 -->
-     <div style="position: relative; height: 80px; background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%); border-radius: 12px; padding: 16px 4px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);"><!-- 1/10 前預報優惠 (12/20-1/10: 5.04%-20.44%) -->
-      <div style="position: absolute; left: 5.04%; width: 12.20%; top: 20px; height: 40px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 6px; border: 2px solid #fbbf24; box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3); display: flex; align-items: center; justify-content: center; z-index: 10;"><span style="font-size: 0.75rem; font-weight: 700; color: #92400e; white-space: nowrap;">預報優惠</span>
-      </div><!-- 1/20 前全額繳清 (12/20-1/20: 5.04%-24.40%) - 與預報優惠重疊，下移10px -->
-      <div style="position: absolute; left: 5.04%; width: 19.36%; top: 30px; height: 40px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 6px; border: 2px solid #3b82f6; box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; opacity: 0.85; z-index: 9;"><span style="font-size: 0.75rem; font-weight: 700; color: #1e40af; white-space: nowrap;">全額繳清優惠</span>
-      </div><!-- 自習教室1 (1/26-1/30: 26.04%-31.05%) -->
-      <div style="position: absolute; left: 26.04%; width: 5%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;">
-      </div><!-- 自習教室2 (2/2-2/6: 32.10%-38.45%) -->
-      <div style="position: absolute; left: 32.10%; width: 5%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;">
-      </div><!-- 第三次模考 (2/9-2/10: 38.45%-39.64%) -->
-      <div style="position: absolute; left: 38.00%; width: 1.21%; top: 20px; height: 40px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 6px; border: 2px solid #ec4899; box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3); z-index: 8;">
-      </div><!-- 自習教室3 (2/11-2/12: 39.22%-36.44%) -->
-      <div style="position: absolute; left: 39.22%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px  rgba(139, 92, 246, 0.3); z-index: 8;">
-      </div><!-- 農曆年假 (2/13-2/22: 40.34%-47.64%) - 與模考3部分重疊 -->
-      <div style="position: absolute; left: 40.34%; width: 8%; top: 20px; height: 40px; background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 6px; border: 2px solid #ef4444; box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3); display: flex; align-items: center; justify-content: center; z-index: 7;"><span style="font-size: 0.7rem; font-weight: 700; color: #991b1b; white-space: nowrap;">年假10天</span>
-      </div><!-- 第四次模考 (4/15:80%) -->
-      <div style="position: absolute; left: 80%; width: 1.21%; top: 20px; height: 40px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 6px; border: 2px solid #ec4899; box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3); z-index: 8;">
-      </div><!-- 課程結束 (5/12: 93.33%) -->
-      <div style="position: absolute; left: 93.33%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 6px; border: 2px solid #10b981; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3); z-index: 8;">
-      </div><!-- 自習教室4 (5/13-2/15: 94.44%-96.00%) -->
-      <div style="position: absolute; left: 94.44%; width: 1.51%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px  rgba(139, 92, 246, 0.3); z-index: 8;">
-      </div><!-- 國中會考 (5/16-5/17: 97.56%-98.67%) -->
-      <div style="position: absolute; left: 97.56%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); border-radius: 6px; border: 3px solid #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.5); display: flex; align-items: center; justify-content: center; z-index: 10;"><span style="font-size: 0.65rem; font-weight: 800; color: #854d0e; writing-mode: vertical-rl;">會考</span>
-      </div><!-- 起始與結束日期標籤 -->
-      <div style="position: absolute; left: 5.04%; bottom: 4px; font-size: 0.8rem; font-weight: 700; color: #475569;">
-       12/20
-      </div>
-      <div style="position: absolute; right: 0%; bottom: 4px; font-size: 0.8rem; font-weight: 700; color: #475569;">
-       5/17
-      </div>
-     </div><!-- 圖例說明 -->
-     <div style="margin-top: 16px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.8rem;">
+ <body style="overflow-auto;">
+  <div style="width: 100%; min-height: 100%; padding: 32px 20px;"><!-- 標題區 -->
+   <div style="background: white; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+    <h1 id="main-title" style="font-size: 2.25rem; font-weight: 700; color: #1e40af; margin-bottom: 12px;">114國三總複習C階段與模考衝刺班</h1>
+    <p id="subtitle" style="font-size: 1.125rem; color: #475569; font-weight: 600;">系統複習 × 模考實戰 × 標靶分析</p>
+   </div><!-- 主內容區 -->
+   <div style="background: white; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"><!-- 科目選擇標題 -->
+   <main style="padding: 20px;"><!-- 課程時間表 -->
+    <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+     <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 16px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">📅 課程時間表</h2><!-- 圖例 -->
+     <div style="display: flex; gap: 16px; margin-bottom: 16px; padding: 12px; background: #f8fafc; border-radius: 6px;">
       <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #fbbf24; border-radius: 3px;"></div><span style="color: #92400e; font-weight: 600;">預報優惠</span>
+       <div style="width: 16px; height: 16px; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 3px;"></div><span style="font-size: 0.9rem; font-weight: 600; color: #92400e;">模考時間</span>
       </div>
       <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 3px;"></div><span style="color: #1e40af; font-weight: 600;">全額繳清優惠</span>
+       <div style="width: 16px; height: 16px; background: #dbeafe; border: 2px solid #3b82f6; border-radius: 3px;"></div><span style="font-size: 0.9rem; font-weight: 600; color: #1e40af;">總複習課程</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #8b5cf6; border-radius: 3px;"></div><span style="color: #6b21a8; font-weight: 600;">自習教室</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border: 2px solid #ec4899; border-radius: 3px;"></div><span style="color: #be185d; font-weight: 600;">模考</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444; border-radius: 3px;"></div><span style="color: #991b1b; font-weight: 600;">年假</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 6px;">
-       <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); border: 2px solid #eab308; border-radius: 3px;"></div><span style="color: #854d0e; font-weight: 600;">會考</span>
-      </div>
-     </div>
-     <div style="margin-top: 12px; text-align: center; font-size: 0.85rem; color: #64748b; font-weight: 600;">
-      總時程：148天 (2024/12/20 - 2025/5/17)
-     </div>
-    </div>
-   </div><!-- 特色服務 -->
-   <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 20px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">⭐ 特色服務</h2>
-    <div style="display: grid; gap: 12px;">
-     <div style="padding: 14px; background: #eff6ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
-      <div style="font-weight: 700; color: #1e40af; margin-bottom: 6px;">
-       🎯 錯題標靶分析
-      </div>
-      <div style="color: #475569; font-size: 0.95rem;">
-       每3周一次「錯題標靶」，針對孩子的錯題再次確認孩子的觀念
-      </div>
-     </div>
-     <div style="padding: 14px; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
-      <div style="font-weight: 700; color: #92400e; margin-bottom: 6px;">
-       📚 開放自習教室
-      </div>
-      <div style="color: #78350f; font-size: 0.95rem;">
-      <div>
-        • 1/26(一) ~ 1/30(五) 14:00 - 17:00
-       </div>
-       <div>
-        • 2/2(一) ~  2/6(五) 14:00 - 17:00
-       </div>
-       <div>
-        • 2/11(三) ~ 2/12(四) 14:00 - 17:00
-       </div>
-       <div>
-        • 5/13(三) ~ 5/15(五) 全天開放
-       </div>
-       <div style="margin-top: 4px; font-weight: 600;">
-        老師解惑與陪伴<span style="font-weight: 700; color: #dc2626;">(針對個人錯題觀念講解與客製化個別輔導)</span>
-       </div>
-      </div>
-     </div>
-     <div style="padding: 14px; background: #e0e7ff; border-radius: 8px; border-left: 4px solid #6366f1;">
-      <div style="font-weight: 700; color: #4338ca; margin-bottom: 6px;">
-       📝 顧群模考
-      </div>
-      <div style="color: #3730a3; font-size: 0.95rem;">
-       <div>
-        • 第三次模考 (B1~B5)：115年 2/9 ~ 2/10
-       </div>
-       <div>
-        • 第四次模考 (B1~B6)：115年 4月中
-       </div>
-      </div>
-     </div>
-    </div>
-   </div><!-- 優惠方案 -->
-   <div style="background: white; border-radius: 8px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-    <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e40af; margin-bottom: 12px; border-bottom: 2px solid #3b82f6; padding-bottom: 6px;">🎁 優惠方案</h2>
-    <div style="display: grid; gap: 8px; font-size: 0.9rem;">
-     <div style="background: #fef3c7; padding: 10px; border-radius: 6px; border-left: 3px solid #f59e0b;"><span style="font-weight: 700; color: #92400e;">💰 1/10(六)前預報：</span> <span style="font-weight: 700; color: #3730a3;">每科</span><span style="background: #fef08a; padding: 2px 6px; border-radius: 4px; font-weight: 800; color: #dc2626;">先繳1,000元</span><span style="font-weight: 700; color: #3730a3;">，即享最優惠學費</span> <span style="font-weight: 700; color: #dc2626;">（憑預報收據才能享有報名優惠）</span>
-     </div>
-     <div style="background: #dbeafe; padding: 16px; border-radius: 6px; border-left: 3px solid #3b82f6;">
-      <div style="font-weight: 700; color: #1e40af; margin-bottom: 12px;">
-       💰 1/20(二)前全額繳清 - 再享額外優惠：
-      </div>
-      <table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #3b82f6; border-radius: 6px; overflow: hidden;">
+     </div><!-- 課程表格 -->
+     <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
        <thead>
-        <tr style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
-         <th style="padding: 10px; text-align: center; color: white; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.3);">科目數</th>
-         <th style="padding: 10px; text-align: center; color: white; font-weight: 700;">額外優惠金額</th>
+        <tr style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">
+         <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem; border-right: 1px solid rgba(255,255,255,0.2);">星期</th>
+         <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem; border-right: 1px solid rgba(255,255,255,0.2);">時間</th>
+         <th style="padding: 14px; text-align: center; color: white; font-weight: 700; font-size: 1rem;">課程內容</th>
         </tr>
        </thead>
-       <tbody>
-        <tr style="background: #eff6ff;">
-         <td style="padding: 10px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #3b82f6; border-right: 1px solid #bfdbfe;">1科</td>
-         <td style="padding: 10px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #3b82f6;">再優惠 500元</td>
-        </tr>
-        <tr style="background: white;">
-         <td style="padding: 10px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">2科</td>
-         <td style="padding: 10px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 1,000元</td>
-        </tr>
-        <tr style="background: #eff6ff;">
-         <td style="padding: 10px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">3科</td>
-         <td style="padding: 10px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 2,000元</td>
-        </tr>
-        <tr style="background: white;">
-         <td style="padding: 10px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">4科</td>
-         <td style="padding: 10px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 3,000元</td>
-        </tr>
-        <tr style="background: #eff6ff;">
-         <td style="padding: 10px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">全科(5科)</td>
-         <td style="padding: 10px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 6,000元</td>
+       <tbody><!-- 星期一 -->
+        <tr style="background: #fef3c7;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期一</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">18:00 - 21:00</td>
+         <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
+          <div style="font-weight: 700; margin-bottom: 4px;">
+           🎯 自然模考 / 數學模考
+          </div>
+          <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
+           最完整版本 × 最新素養題型
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 6px;">
+           💡 <strong>自然模考策略：</strong>針對實作實驗題練習分析圖表與變因，關注氣候變遷、能源環保等生活議題
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
+           💡 <strong>數學模考策略：</strong>強化課綱題加深加廣的複習，練習歷屆試題，掌握各主題核心素養，長篇閱讀及分析題型重點
+          </div></td>
+        </tr><!-- 星期二 -->
+        <tr style="background: #fef3c7;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期二</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">18:00 - 21:00</td>
+         <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
+          <div style="font-weight: 700; margin-bottom: 4px;">
+           🎯 自習 / 社會模考
+          </div>
+          <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
+           跨領域結合 × 核心素養題型
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 6px;">
+           💡 <strong>社會模考策略：</strong>台灣史地（地緣、氣候、人口）、公民時事議題（五院職權、社會議題）、世界史地經緯度 | 結合地理與歷史畫地圖，熟悉世界地圖判讀，詳讀所有選項
+          </div></td>
+        </tr><!-- 星期三 -->
+        <tr style="background: #dbeafe;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期三</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
+         <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
+          <div style="font-weight: 700; margin-bottom: 6px;">
+           📚 英文總複習課程
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
+           📌 <strong>重點：</strong>單字與文法（時態、主被動、子句）、長篇閱讀題組
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
+           📌 <strong>衝刺重點：</strong>聽力、克漏字、長篇閱讀速度 | 每日聽力練習，整理錯題文法，熟悉題組題
+          </div></td>
+        </tr><!-- 星期四 -->
+        <tr style="background: #dbeafe;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期四</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
+         <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
+          <div style="font-weight: 700; margin-bottom: 6px;">
+           📚 社會總複習課程
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
+           📌 <strong>重點：</strong>台灣歷史與地理（在地化）、世界氣候與人口、公民議題（少子化、家庭、五院互動）
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
+           📌 <strong>衝刺重點：</strong>台灣史地（地緣、氣候、人口）、公民時事議題（五院職權、社會議題）、世界史地經緯度 | 結合地理與歷史畫地圖，熟悉世界地圖判讀，詳讀所有選項
+          </div></td>
+        </tr><!-- 星期五 -->
+        <tr style="background: #dbeafe;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.95rem;">星期五</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:00</td>
+         <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
+          <div style="font-weight: 700; margin-bottom: 6px;">
+           📚 國文總複習課程
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
+           📌 <strong>重點：</strong>閱讀理解（跨領域、圖表、轉折詞）、作文架構與開頭、文言文、白話文題組
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
+           📌 <strong>衝刺練習：</strong>每日練習素養題，寫作練習開頭段落，多閱讀報章雜誌
+          </div></td>
+        </tr><!-- 星期六 下午 -->
+        <tr style="background: #fef3c7;">
+         <td rowspan="2" style="padding: 14px; text-align: center; font-weight: 700; color: #92400e; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期六</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #78350f; border-right: 1px solid #f59e0b; border-top: 1px solid #f59e0b; font-size: 0.9rem;">14:00 - 17:00</td>
+         <td style="padding: 14px; color: #78350f; border-top: 1px solid #f59e0b;">
+          <div style="font-weight: 700; margin-bottom: 4px;">
+           🎯 國文模考 / 英文模考
+          </div>
+          <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 6px;">
+           最新時事議題盡收眼底
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
+           💡 <strong>國文模考策略：</strong>閱讀理解（跨領域、圖表、轉折詞）、素養題的實戰，寫作練習開頭段落，技巧式的閱讀報章雜誌與分析重點
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.6; color: #92400e; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px;">
+           💡 <strong>英文模考策略：</strong>聽力、克漏字、長篇閱讀速度 | 模考內包含聽力練習，整理錯題文法，熟悉題組題
+          </div></td>
+        </tr><!-- 星期六 晚上 -->
+        <tr style="background: #dbeafe;">
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">18:00 - 21:20</td>
+         <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
+          <div style="font-weight: 700; margin-bottom: 6px;">
+           📚 自然總複習課程
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
+           📌 <strong>重點：</strong>實驗與探究能力、數據資料判讀、生活應用、跨科題
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
+           📌 <strong>衝刺重點：</strong>圖表分析、實驗概念、探究與實作題 | 每週練習探究題，整理實驗步驟，將錯題與課本連結
+          </div></td>
+        </tr><!-- 星期日 -->
+        <tr style="background: #dbeafe;">
+         <td style="padding: 14px; text-align: center; font-weight: 700; color: #1e40af; border-right: 1px solid #3b82f6; border-top: 1px solid #f59e0b; font-size: 0.95rem;">星期日</td>
+         <td style="padding: 14px; text-align: center; font-weight: 600; color: #1e3a8a; border-right: 1px solid #3b82f6; border-top: 1px solid #3b82f6; font-size: 0.9rem;">09:00 - 12:00</td>
+         <td style="padding: 14px; color: #1e3a8a; border-top: 1px solid #3b82f6;">
+          <div style="font-weight: 700; margin-bottom: 6px;">
+           📚 數學總複習課程
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 4px;">
+           📌 <strong>重點：</strong>基本概念、公式運用、圖表分析
+          </div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #1e3a8a; background: rgba(255,255,255,0.5); padding: 6px 8px; border-radius: 4px; margin-top: 4px; border-left: 3px solid #3b82f6;">
+           📌 <strong>衝刺重點：</strong>應用題、圖表題、非選題 | 每天練非選題，複習公式，做考古題找出弱點
+          </div></td>
         </tr>
        </tbody>
       </table>
      </div>
-    </div>
-   </div><!-- 科目選擇 -->
-   <div id="subject-selection-section" style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-    <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-bottom: 16px;">✅ 選擇報名科目</h2>
-    <div id="subjects-container" style="display: grid; gap: 12px; margin-bottom: 16px;"><!-- 國文 -->
-     <div class="subject-card" data-subject="chinese" style="display: grid; grid-template-columns: 30px 90px 1fr 110px 140px; align-items: center; gap: 10px; padding: 16px; border-radius: 8px; font-size: 1rem;"><input type="checkbox" class="checkbox-custom" id="chinese-check">
-      <div style="font-weight: 700; color: #1e40af; font-size: 1.125rem;">
-       📖 國文
+     
+    </div><!-- 重要時程表 -->
+    <div style="background: white; border-radius: 12px; padding: 32px 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+     <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 24px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">📅 重要時程表</h2><!-- 時間線容器 -->
+     <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; flex-direction: column; gap: 12px;"><!-- 1/10 前預報 -->
+       <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #fbbf24; box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #92400e; font-size: 1.125rem; min-width: 140px;">
+          1/10(六)前
+         </div>
+         <div style="font-size: 1rem; color: #78350f; font-weight: 700;">
+          預報優惠
+         </div>
+        </div>
+       </div><!-- 1/20 全額繳清 -->
+       <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #3b82f6; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #1e40af; font-size: 1.125rem; min-width: 140px;">
+          1/20(一)前
+         </div>
+         <div style="font-size: 1rem; color: #1e3a8a; font-weight: 700;">
+          全額繳清優惠
+         </div>
+        </div>
+       </div><!-- 自習教室1 -->
+       <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
+          1/26(一)~1/30(五)
+         </div>
+         <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
+          自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;"> 1對1個別輔導</span>
+         </div>
+        </div>
+       </div><!-- 自習教室2 -->
+       <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
+          2/2(一)~2/6(五)
+         </div>
+         <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
+          自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;"> 1對1個別輔導</span>
+         </div>
+        </div>
+       </div><!-- 第三次模考 -->
+       <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ec4899; box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #be185d; font-size: 1.125rem; min-width: 140px;">
+          2/9(一)~2/10(二)
+         </div>
+         <div style="font-size: 1rem; color: #db2777; font-weight: 700;">
+          第三次模考 (B1~B5)
+         </div>
+        </div>
+       </div><!-- 自習教室3 -->
+       <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
+          2/11(三)~2/12(四)
+         </div>
+         <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
+          自習教室開放 (14:00-17:00)<span style="font-weight: 700; color: #dc2626;"> 1對1個別輔導</span>
+         </div>
+        </div>
+       </div><!-- 農曆年假 -->
+       <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ef4444; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #991b1b; font-size: 1.125rem; min-width: 140px;">
+          2/13(五)~2/22(日)
+         </div>
+         <div style="font-size: 1rem; color: #dc2626; font-weight: 700;">
+          農曆年假 (共10天)
+         </div>
+        </div>
+       </div><!-- 第四次模考 -->
+       <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #ec4899; box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #be185d; font-size: 1.125rem; min-width: 140px;">
+          4月中
+         </div>
+         <div style="font-size: 1rem; color: #db2777; font-weight: 700;">
+          第四次模考 (B1~B6)
+         </div>
+        </div>
+       </div><!-- 5/12 課程結束 -->
+       <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #047857; font-size: 1.125rem; min-width: 140px;">
+          5/12(二)
+         </div>
+         <div style="font-size: 1rem; color: #059669; font-weight: 700;">
+          課程結束
+         </div>
+        </div>
+       </div><!-- 自習教室4 -->
+       <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 16px 24px; border-radius: 10px; border-left: 6px solid #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 800; color: #6b21a8; font-size: 1.125rem; min-width: 140px;">
+          5/13(三)~5/15(五)
+         </div>
+         <div style="font-size: 1rem; color: #7c3aed; font-weight: 700;">
+          開放全天自習教室
+         </div>
+        </div>
+       </div><!-- 5/16、17 國中會考 -->
+       <div style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); padding: 20px 24px; border-radius: 10px; border-left: 8px solid #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.4);">
+        <div style="display: flex; align-items: center; gap: 16px;">
+         <div style="font-weight: 900; color: #854d0e; font-size: 1.25rem; min-width: 140px;">
+          5/16(六)、17(日)
+         </div>
+         <div style="font-size: 1.125rem; color: #a16207; font-weight: 800;">
+          🎯 國中會考
+         </div>
+        </div>
+       </div>
       </div>
-      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;"></div>
-      <div class="price-display" id="chinese-price" style="font-size: 1.125rem; color: #dc2626; font-weight: 700;">
-       NT$ 12,800
-      </div><button class="prereport-btn" data-subject="chinese" style="background: #d1d5db; color: #9ca3af; padding: 8px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: not-allowed; font-size: 0.9rem; white-space: nowrap;" disabled>1/10前預報</button>
-     </div><!-- 英文 -->
-     <div class="subject-card" data-subject="english" style="display: grid; grid-template-columns: 30px 90px 1fr 110px 140px; align-items: center; gap: 10px; padding: 16px; border-radius: 8px; font-size: 1rem;"><input type="checkbox" class="checkbox-custom" id="english-check">
-      <div style="font-weight: 700; color: #1e40af; font-size: 1.125rem;">
-       🔤 英文
+     </div><!-- 視覺化時間軸圖表 -->
+     <div style="margin-top: 40px; padding-top: 32px; border-top: 2px solid #e5e7eb;">
+      <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e40af; margin-bottom: 20px; text-align: center;">📊 時間軸視覺圖</h3><!-- 月份標籤 -->
+      <div style="display: flex; margin-bottom: 8px; padding: 0 4px;">
+       <div style="width: 9.11%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        12月中
+       </div>
+       <div style="width: 5.44%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        1月
+       </div>
+       <div style="width: 30.78%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        2月
+       </div>
+       <div style="width: 10.44%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        3月
+       </div>
+       <div style="width: 30.89%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        4月
+       </div>
+       <div style="width: 10.33%; text-align: center; font-weight: 700; color: #1e40af; font-size: 0.95rem;">
+        5月
+       </div>
+      </div><!-- 時間軸容器 -->
+      <div style="position: relative; height: 80px; background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%); border-radius: 12px; padding: 16px 4px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);"><!-- 1/10 前預報優惠 -->
+       <div style="position: absolute; left: 5.04%; width: 12.20%; top: 20px; height: 40px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 6px; border: 2px solid #fbbf24; box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3); display: flex; align-items: center; justify-content: center; z-index: 10;"><span style="font-size: 0.75rem; font-weight: 700; color: #92400e; white-space: nowrap;">預報優惠</span>
+       </div><!-- 1/20 前全額繳清 -->
+       <div style="position: absolute; left: 5.04%; width: 19.36%; top: 30px; height: 40px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 6px; border: 2px solid #3b82f6; box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; opacity: 0.85; z-index: 9;"><span style="font-size: 0.75rem; font-weight: 700; color: #1e40af; white-space: nowrap;">全額繳清優惠</span>
+       </div><!-- 自習教室1 -->
+       <div style="position: absolute; left: 26.04%; width: 5%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;"></div><!-- 自習教室2 -->
+       <div style="position: absolute; left: 32.10%; width: 5%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;"></div><!-- 第三次模考 -->
+       <div style="position: absolute; left: 38.00%; width: 1.21%; top: 20px; height: 40px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 6px; border: 2px solid #ec4899; box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3); z-index: 8;"></div><!-- 自習教室3 -->
+       <div style="position: absolute; left: 39.22%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;"></div><!-- 農曆年假 -->
+       <div style="position: absolute; left: 40.34%; width: 8%; top: 20px; height: 40px; background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 6px; border: 2px solid #ef4444; box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3); display: flex; align-items: center; justify-content: center; z-index: 7;"><span style="font-size: 0.7rem; font-weight: 700; color: #991b1b; white-space: nowrap;">年假10天</span>
+       </div><!-- 第四次模考 -->
+       <div style="position: absolute; left: 80%; width: 1.21%; top: 20px; height: 40px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 6px; border: 2px solid #ec4899; box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3); z-index: 8;"></div><!-- 課程結束 -->
+       <div style="position: absolute; left: 93.33%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 6px; border: 2px solid #10b981; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3); z-index: 8;"></div><!-- 自習教室4 -->
+       <div style="position: absolute; left: 94.44%; width: 1.51%; top: 20px; height: 40px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 6px; border: 2px solid #8b5cf6; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3); z-index: 8;"></div><!-- 國中會考 -->
+       <div style="position: absolute; left: 97.56%; width: 1.11%; top: 20px; height: 40px; background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); border-radius: 6px; border: 3px solid #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.5); display: flex; align-items: center; justify-content: center; z-index: 10;"><span style="font-size: 0.65rem; font-weight: 800; color: #854d0e; writing-mode: vertical-rl;">會考</span>
+       </div><!-- 起始與結束日期標籤 -->
+       <div style="position: absolute; left: 5.04%; bottom: 4px; font-size: 0.8rem; font-weight: 700; color: #475569;">
+        12/20
+       </div>
+       <div style="position: absolute; right: 0%; bottom: 4px; font-size: 0.8rem; font-weight: 700; color: #475569;">
+        5/16
+      
+       </div>
+      </div><!-- 圖例說明 -->
+      <div style="margin-top: 16px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.8rem;">
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #fbbf24; border-radius: 3px;"></div><span style="color: #92400e; font-weight: 600;">預報優惠</span>
+       </div>
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 3px;"></div><span style="color: #1e40af; font-weight: 600;">全額繳清優惠</span>
+       </div>
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #8b5cf6; border-radius: 3px;"></div><span style="color: #6b21a8; font-weight: 600;">自習教室</span>
+       </div>
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border: 2px solid #ec4899; border-radius: 3px;"></div><span style="color: #be185d; font-weight: 600;">模考</span>
+       </div>
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444; border-radius: 3px;"></div><span style="color: #991b1b; font-weight: 600;">年假</span>
+       </div>
+       <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 16px; height: 16px; background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); border: 2px solid #eab308; border-radius: 3px;"></div><span style="color: #854d0e; font-weight: 600;">會考</span>
+       </div>
       </div>
-      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;"></div>
-      <div class="price-display" id="english-price" style="font-size: 1.125rem; color: #dc2626; font-weight: 700;">
-       NT$ 12,800
-      </div><button class="prereport-btn" data-subject="english" style="background: #d1d5db; color: #9ca3af; padding: 8px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: not-allowed; font-size: 0.9rem; white-space: nowrap;" disabled>1/10前預報</button>
-     </div><!-- 數學 -->
-     <div class="subject-card" data-subject="math" style="display: grid; grid-template-columns: 30px 90px 1fr 110px 140px; align-items: center; gap: 10px; padding: 16px; border-radius: 8px; font-size: 1rem;"><input type="checkbox" class="checkbox-custom" id="math-check">
-      <div style="font-weight: 700; color: #1e40af; font-size: 1.125rem;">
-       📐 數學
+      <div style="margin-top: 12px; text-align: center; font-size: 0.85rem; color: #64748b; font-weight: 600;">
+       總時程：147天 (2025/12/20 - 2026/5/16)
       </div>
-      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;"></div>
-      <div class="price-display" id="math-price" style="font-size: 1.125rem; color: #dc2626; font-weight: 700;">
-       NT$ 12,800
-      </div><button class="prereport-btn" data-subject="math" style="background: #d1d5db; color: #9ca3af; padding: 8px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: not-allowed; font-size: 0.9rem; white-space: nowrap;" disabled>1/10前預報</button>
-     </div><!-- 社會 -->
-     <div class="subject-card" data-subject="social" style="display: grid; grid-template-columns: 30px 90px 1fr 110px 140px; align-items: center; gap: 10px; padding: 16px; border-radius: 8px; font-size: 1rem;"><input type="checkbox" class="checkbox-custom" id="social-check">
-      <div style="font-weight: 700; color: #1e40af; font-size: 1.125rem;">
-       🌍 社會
-      </div>
-      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;"></div>
-      <div class="price-display" id="social-price" style="font-size: 1.125rem; color: #dc2626; font-weight: 700;">
-       NT$ 12,800
-      </div><button class="prereport-btn" data-subject="social" style="background: #d1d5db; color: #9ca3af; padding: 8px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: not-allowed; font-size: 0.9rem; white-space: nowrap;" disabled>1/10前預報</button>
-     </div><!-- 自然 -->
-     <div class="subject-card" data-subject="science" style="display: grid; grid-template-columns: 30px 90px 1fr 110px 140px; align-items: center; gap: 10px; padding: 16px; border-radius: 8px; font-size: 1rem;"><input type="checkbox" class="checkbox-custom" id="science-check">
-      <div style="font-weight: 700; color: #1e40af; font-size: 1.125rem;">
-       ⚗️ 自然
-      </div>
-      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;"></div>
-      <div class="price-display" id="science-price" style="font-size: 1.125rem; color: #dc2626; font-weight: 700;">
-       NT$ 12,800
-      </div><button class="prereport-btn" data-subject="science" style="background: #d1d5db; color: #9ca3af; padding: 8px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: not-allowed; font-size: 0.9rem; white-space: nowrap;" disabled>1/10前預報</button>
      </div>
-    </div><!-- 小計金額 -->
-    <div id="subtotal-section" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; border: 2px solid #7dd3fc; display: none;">
-     <div style="display: flex; justify-content: space-between; align-items: center;">
+    </div><!-- 特色服務 -->
+    <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+     <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 20px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">⭐ 特色服務</h2>
+     <div style="display: grid; gap: 12px;">
+      <div style="padding: 14px; background: #eff6ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+       <div style="font-weight: 700; color: #1e40af; margin-bottom: 6px;">
+        🎯 錯題標靶分析
+       </div>
+       <div style="color: #475569; font-size: 0.95rem;">
+        每3周一次「錯題標靶」，針對孩子的錯題再次確認孩子的觀念
+       </div>
+      </div>
+      <div style="padding: 14px; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
+       <div style="font-weight: 700; color: #92400e; margin-bottom: 6px;">
+        📚 開放自習教室
+       </div>
+       <div style="color: #78350f; font-size: 0.95rem;">
+        <div>
+         • 1/26(一) ~ 1/30(五) 14:00 - 17:00
+        </div>
+        <div>
+         • 2/2(一) ~ 2/6(五) 14:00 - 17:00
+        </div>
+        <div>
+         • 2/11(三) ~ 2/12(四) 14:00 - 17:00
+        </div>
+        <div>
+         • 5/13(三) ~ 5/15(五) 全天開放
+        </div>
+        <div style="margin-top: 4px; font-weight: 600;">
+         老師解惑與陪伴<span style="font-weight: 700; color: #dc2626;">(針對個人錯題觀念釐解與客製化個別輔導)</span>
+        </div>
+       </div>
+      </div>
+      <div style="padding: 14px; background: #e0e7ff; border-radius: 8px; border-left: 4px solid #6366f1;">
+       <div style="font-weight: 700; color: #4338ca; margin-bottom: 6px;">
+        📝 顧群模考
+       </div>
+       <div style="color: #3730a3; font-size: 0.95rem;">
+        <div>
+         • 第三次模考 (B1~B5)：115年 2/9 ~ 2/10
+        </div>
+        <div>
+         • 第四次模考 (B1~B6)：115年 4月中
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- 優惠方案 -->
+    <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+     <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 16px; border-bottom: 3px solid #3b82f6; padding-bottom: 8px;">🎁 優惠方案</h2>
+     <div style="display: grid; gap: 12px; font-size: 0.95rem;">
+      <div style="background: #fef3c7; padding: 14px; border-radius: 8px; border-left: 4px solid #f59e0b;"><span style="font-weight: 700; color: #92400e;">💰 1/10(六)前預報：</span><span style="font-weight: 700; color: #3730a3;">每科</span> <span style="background: #fef08a; padding: 3px 8px; border-radius: 4px; font-weight: 800; color: #dc2626; margin: 0 4px;">先繳1,000元</span> <span style="font-weight: 700; color: #3730a3;">，即享最優惠學費</span> <span style="font-weight: 700; color: #dc2626;">（憑預報收據才能享有報名優惠）</span><span style="font-weight: 700; color: #92400e;"><br>📚 每科總複習課程，皆有該科的模考題庫班，報名時無須額外再選</span> </br>
+      </div>
+      <div style="background: #dbeafe; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+       <div style="font-weight: 700; color: #1e40af; margin-bottom: 16px; font-size: 1.05rem;">
+        💰 1/20(二)前全額繳清 - 再享額外優惠：
+       </div>
+       <table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #3b82f6; border-radius: 8px; overflow: hidden;">
+        <thead>
+         <tr style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+          <th style="padding: 12px; text-align: center; color: white; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.3);">科目數</th>
+          <th style="padding: 12px; text-align: center; color: white; font-weight: 700;">額外優惠金額</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr style="background: #eff6ff;">
+          <td style="padding: 12px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #3b82f6; border-right: 1px solid #bfdbfe;">1科</td>
+          <td style="padding: 12px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #3b82f6;">再優惠 500元</td>
+         </tr>
+         <tr style="background: white;">
+          <td style="padding: 12px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">2科</td>
+          <td style="padding: 12px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 1,000元</td>
+         </tr>
+         <tr style="background: #eff6ff;">
+          <td style="padding: 12px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">3科</td>
+          <td style="padding: 12px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 2,000元</td>
+         </tr>
+         <tr style="background: white;">
+          <td style="padding: 12px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">4科</td>
+          <td style="padding: 12px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 3,000元</td>
+         </tr>
+         <tr style="background: #eff6ff;">
+          <td style="padding: 12px; text-align: center; font-weight: 600; color: #1e40af; border-top: 1px solid #bfdbfe; border-right: 1px solid #bfdbfe;">全科(5科)</td>
+          <td style="padding: 12px; text-align: center; font-weight: 700; color: #dc2626; border-top: 1px solid #bfdbfe;">再優惠 6,000元</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </div>
+   </main><!-- 頁尾 --><!-- 科目卡片 -->
+    <div class="subjects-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;"><!-- 國文 -->
+     <div class="subject-card" data-subject="chinese" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 8px; border: 3px solid #93c5fd;">
+        <h2 style="font-size: 1.875rem; font-weight: 700; color: #1e40af; margin-bottom: 24px; border-bottom: 3px solid #3b82f6; padding-bottom: 12px;">📚 請勾選欲報名之科目</h2><!-- 優惠說明 -->
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><input type="checkbox" class="checkbox-custom" id="chinese-check"> <label for="chinese-check" style="font-size: 1.25rem; font-weight: 700; color: #1e40af; cursor: pointer;">📖 國文</label>
+      </div>
+      <div style="font-size: 1.125rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px;">
+       NT$ 12,800
+      </div><button class="prereport-btn" data-subject="chinese" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.95rem; background: #d1d5db; color: #9ca3af; cursor: not-allowed; transition: all 0.2s;">1/10前預報</button>
+     </div><!-- 英文 -->
+     <div class="subject-card" data-subject="english" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 8px; border: 3px solid #93c5fd;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><input type="checkbox" class="checkbox-custom" id="english-check"> <label for="english-check" style="font-size: 1.25rem; font-weight: 700; color: #1e40af; cursor: pointer;">🌍 英文</label>
+      </div>
+      <div style="font-size: 1.125rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px;">
+       NT$ 12,800
+      </div><button class="prereport-btn" data-subject="english" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.95rem; background: #d1d5db; color: #9ca3af; cursor: not-allowed; transition: all 0.2s;">1/10前預報</button>
+     </div><!-- 數學 -->
+     <div class="subject-card" data-subject="math" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 8px; border: 3px solid #93c5fd;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><input type="checkbox" class="checkbox-custom" id="math-check"> <label for="math-check" style="font-size: 1.25rem; font-weight: 700; color: #1e40af; cursor: pointer;">🔢 數學</label>
+      </div>
+      <div style="font-size: 1.125rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px;">
+       NT$ 12,800
+      </div><button class="prereport-btn" data-subject="math" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.95rem; background: #d1d5db; color: #9ca3af; cursor: not-allowed; transition: all 0.2s;">1/10前預報</button>
+     </div><!-- 社會 -->
+     <div class="subject-card" data-subject="social" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 8px; border: 3px solid #93c5fd;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><input type="checkbox" class="checkbox-custom" id="social-check"> <label for="social-check" style="font-size: 1.25rem; font-weight: 700; color: #1e40af; cursor: pointer;">🏛️ 社會</label>
+      </div>
+      <div style="font-size: 1.125rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px;">
+       NT$ 12,800
+      </div><button class="prereport-btn" data-subject="social" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.95rem; background: #d1d5db; color: #9ca3af; cursor: not-allowed; transition: all 0.2s;">1/10前預報</button>
+     </div><!-- 自然 -->
+     <div class="subject-card" data-subject="science" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 8px; border: 3px solid #93c5fd;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><input type="checkbox" class="checkbox-custom" id="science-check"> <label for="science-check" style="font-size: 1.25rem; font-weight: 700; color: #1e40af; cursor: pointer;">🔬 自然</label>
+      </div>
+      <div style="font-size: 1.125rem; font-weight: 700; color: #1e3a8a; margin-bottom: 8px;">
+       NT$ 12,800
+      </div><button class="prereport-btn" data-subject="science" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.95rem; background: #d1d5db; color: #9ca3af; cursor: not-allowed; transition: all 0.2s;">1/10前預報</button>
+     </div>
+    </div><!-- 小計區域 -->
+    <div id="subtotal-section" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-radius: 8px; padding: 18px; margin-bottom: 16px; border: 2px solid #38bdf8; display: none;">
+     <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center;">
       <div>
-       <div style="font-weight: 700; color: #0c4a6e; font-size: 1.05rem; margin-bottom: 4px;">
-        📋 報名科目小計
+       <div style="font-size: 0.85rem; color: #0369a1; margin-bottom: 4px;">
+        已選科目總複習
        </div>
        <div id="subtotal-subjects" style="font-size: 0.9rem; color: #075985; line-height: 1.5;"></div>
       </div>
@@ -615,9 +583,6 @@
         <div style="color: #065f46; font-size: 0.85rem;">
          核心素養完整體現
         </div>
-         
-         
-         
        </div>
       </div>
       <div style="background: #fef3c7; padding: 10px; border-radius: 6px; border: 2px dashed #f59e0b;">
@@ -639,7 +604,7 @@
      </div>
     </div><!-- 1/20前全額繳清選項 -->
     <div style="background: #dbeafe; border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 2px solid #3b82f6;">
-     <div style="display: flex; align-items: center; gap: 12px;"><input type="checkbox" id="full-payment-discount" style="width: 20px; height: 20px; cursor: pointer; accent-color: #3b82f6;"> <label for="full-payment-discount" style="font-weight: 700; color: #1e40af; font-size: 1.05rem; cursor: pointer;"> 💰 我將在 1/20(二) 前全額繳清（享額外優惠） </label>
+     <div style="display: flex; align-items: center; gap: 12px;"><input type="checkbox" id="full-payment-discount" style="width: 20px; height: 20px; cursor: pointer; accent-color: #3b82f6;"> <label for="full-payment-discount" style="font-weight: 700; color: #1e40af; font-size: 1.05rem; cursor: pointer;">💰 我將在 1/20(二) 前全額繳清（享額外優惠）</label>
      </div>
     </div><!-- 費用總結 -->
     <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; border-radius: 8px; padding: 20px; margin-bottom: 16px;">
@@ -668,7 +633,7 @@
        </div>
        <div style="display: flex; align-items: center; gap: 8px;"><label for="student-name" style="font-weight: 600; color: #1e40af; white-space: nowrap;">學生姓名：</label> <input type="text" id="student-name" placeholder="請輸入姓名" style="padding: 10px 14px; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 0.95rem; width: 140px; outline: none; transition: border-color 0.2s; background: white;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'">
        </div>
-      </div><!-- 確認按鈕 --> <button id="confirm-registration-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 14px 40px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4); transition: all 0.2s; white-space: nowrap;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> ✍️ 確認報名資訊 </button>
+      </div><!-- 確認按鈕 --> <button id="confirm-registration-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 14px 40px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4); transition: all 0.2s; white-space: nowrap;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">✍️ 確認報名資訊</button>
      </div>
     </div>
    </div><!-- 警告彈窗 -->
@@ -678,6 +643,33 @@
       ⚠️
      </div>
      <div id="warning-message" style="font-size: 1.125rem; font-weight: 600; color: #dc2626; margin-bottom: 24px; line-height: 1.6;"></div><button id="close-warning-btn" style="background: #3b82f6; color: white; padding: 12px 32px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 1rem;">我知道了</button>
+    </div>
+   </div><!-- 題庫包含說明彈窗 -->
+   <div id="mocktest-included-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 12px; padding: 32px; max-width: 450px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
+     <div style="font-size: 3rem; margin-bottom: 16px;">
+      ✅
+     </div>
+     <div style="font-size: 1.25rem; font-weight: 700; color: #10b981; margin-bottom: 12px;">
+      該科總複習有包含題庫班
+     </div>
+     <div id="mocktest-included-subject" style="font-size: 1.125rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;"></div>
+     <div style="font-size: 0.95rem; color: #475569; margin-bottom: 24px; line-height: 1.8; text-align: left; background: #f0fdf4; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
+      <div style="margin-bottom: 8px;">
+       📚 <span style="font-weight: 700; color: #047857;">包含內容：</span>
+      </div>
+      <div style="padding-left: 20px; color: #065f46;">
+       • 題庫練習系統<br>
+        • 自我評量系統<br>
+        • 錯題標靶分析<br>
+        • 知識點分析報告
+      </div>
+     </div>
+     <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-bottom: 20px; border: 2px solid #fbbf24;">
+      <div style="color: #92400e; font-size: 0.9rem; font-weight: 600;">
+       💡 不需要在下方額外勾選題庫班
+      </div>
+     </div><button id="close-mocktest-included-btn" style="background: #10b981; color: white; padding: 12px 32px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 1rem;">我知道了</button>
     </div>
    </div><!-- 繳費說明彈窗 -->
    <div id="download-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
@@ -752,7 +744,7 @@
         <div style="font-weight: 700; color: #1e40af; margin-bottom: 6px;">
          🏦 轉帳銀行與帳號
         </div>
-        <div style="font-size: 1.05rem; color: #1e3a8a;"><span id="bank-name">彰化銀行 (009)</span><br><span id="account-number" style="font-family: monospace; font-weight: 600;">9318-01-001985-00</span>
+        <div style="font-size: 1.05rem; color: #1e3a8a;"><span id="bank-name">彰化銀行 (009)</span><br><span id="account-number" style="font-family: monospace; font-weight: 600;">. </span>
         </div>
        </div>
        <div style="background: white; padding: 12px; border-radius: 6px;">
@@ -786,7 +778,7 @@
       school_name: '顧群文教',
       phone_number: '03-4311558',
       bank_name: '彰化銀行 (009)',
-      account_number: '9318-01-001985-00'
+      account_number: '. '
     };
 
     const subjects = {
@@ -866,11 +858,9 @@
       }
       selectedSubjectsEl.textContent = displayText;
       
-      // 計算有多少科目已預報
       const prereportedCount = Object.entries(subjects).filter(([_, s]) => s.selected && s.prereported).length;
       const notPrereportedCount = selectedCount - prereportedCount;
       
-      // 計算價格：預報科目使用優惠價，未預報科目使用原價
       let basePrice = 0;
       if (prereportedCount > 0) {
         basePrice += prereportPrices[prereportedCount] || 0;
@@ -892,11 +882,9 @@
         discountInfo = `原價計費 (${selectedCount}科)`;
       }
       
-      // 更新小計區域
       if (selectedCount > 0) {
         subtotalSection.style.display = 'block';
         
-        // 顯示小計科目明細
         let subtotalHTML = `${selectedNames.join('、')} (${selectedCount}科)`;
         if (prereportedCount > 0) {
           const discount = (originalPrices[prereportedCount] || 0) - (prereportPrices[prereportedCount] || 0);
@@ -904,7 +892,6 @@
         }
         subtotalSubjectsEl.innerHTML = subtotalHTML;
         
-        // 顯示小計金額
         subtotalPriceEl.textContent = `NT$ ${subtotalPrice.toLocaleString()}`;
       } else {
         subtotalSection.style.display = 'none';
@@ -912,7 +899,6 @@
       
       let finalPrice = subtotalPrice;
       
-      // 計算全額繳清的科目數量
       const fullPaymentCount = Object.values(subjects).filter(s => s.fullPayment).length;
       
       if (fullPaymentCount > 0) {
@@ -922,8 +908,7 @@
         discountInfo += `1/20前全額繳清再優惠 (${fullPaymentCount}科)：<span style="color: #dc2626; font-weight: 700;">-NT$ ${extraDiscount.toLocaleString()}</span>`;
       }
       
-      // 計算平均每科金額（不包含題庫班）
-      const subjectFinalPrice = finalPrice; // 科目的最終價格（含所有優惠折扣）
+      const subjectFinalPrice = finalPrice;
       if (selectedCount > 0) {
         const averagePerSubject = Math.round(subjectFinalPrice / selectedCount);
         averagePerSubjectEl.textContent = `平均每科：NT$ ${averagePerSubject.toLocaleString()}`;
@@ -953,17 +938,14 @@
           btn.style.color = '#78350f';
           btn.style.cursor = 'pointer';
           
-          // 如果全額繳清已勾選，則新選的科目也自動標記為全額繳清
           if (fullPayCheckbox.checked) {
             subjects[subjectId].fullPayment = true;
           }
         } else {
           card.classList.remove('selected');
           
-          // 取消選中科目的全額繳清狀態
           subjects[subjectId].fullPayment = false;
           
-          // 檢查是否還有選中的科目
           const selectedCount = Object.values(subjects).filter(s => s.selected).length;
           if (selectedCount === 0) {
             fullPayCheckbox.disabled = true;
@@ -981,7 +963,6 @@
           btn.style.color = '#9ca3af';
           btn.style.cursor = 'not-allowed';
           
-          // 取消選擇時，同時取消預報狀態
           if (subjects[subjectId].prereported) {
             subjects[subjectId].prereported = false;
             btn.textContent = '1/10前預報';
@@ -998,7 +979,6 @@
         
         if (!subjects[subjectId].selected) return;
         
-        // 切換預報狀態
         subjects[subjectId].prereported = !subjects[subjectId].prereported;
         
         if (subjects[subjectId].prereported) {
@@ -1019,6 +999,28 @@
       checkbox.addEventListener('change', (e) => {
         const subjectName = e.target.dataset.subject;
         mocktestAddons[subjectName] = e.target.checked;
+        
+        // 檢查對應的總複習科目是否已被選擇
+        if (e.target.checked) {
+          const subjectMap = {
+            '國文': 'chinese',
+            '英文': 'english',
+            '數學': 'math',
+            '社會': 'social',
+            '自然': 'science'
+          };
+          
+          const subjectId = subjectMap[subjectName];
+          if (subjectId && subjects[subjectId].selected) {
+            // 如果總複習已選擇，顯示提示彈窗
+            showMocktestIncludedModal(subjectName);
+            // 取消勾選題庫班
+            e.target.checked = false;
+            mocktestAddons[subjectName] = false;
+            return;
+          }
+        }
+        
         updateSummary();
       });
     });
@@ -1029,14 +1031,12 @@
 
     fullPayCheckbox.addEventListener('change', (e) => {
       if (e.target.checked) {
-        // 全額繳清所有選中的科目
         Object.keys(subjects).forEach(key => {
           if (subjects[key].selected) {
             subjects[key].fullPayment = true;
           }
         });
       } else {
-        // 取消全額繳清
         Object.keys(subjects).forEach(key => {
           subjects[key].fullPayment = false;
         });
@@ -1045,9 +1045,7 @@
       updateSummary();
     });
 
-    // 監聽科目選擇變化，更新全額繳清選項的啟用狀態
     document.querySelectorAll('.checkbox-custom').forEach(checkbox => {
-      const originalListener = checkbox.onchange;
       checkbox.addEventListener('change', () => {
         const selectedCount = Object.values(subjects).filter(s => s.selected).length;
         
@@ -1127,6 +1125,25 @@
       }
     });
 
+    function showMocktestIncludedModal(subjectName) {
+      const modal = document.getElementById('mocktest-included-modal');
+      const subjectEl = document.getElementById('mocktest-included-subject');
+      subjectEl.textContent = `您選擇的【${subjectName}】總複習課程`;
+      modal.style.display = 'flex';
+    }
+    
+    function hideMocktestIncludedModal() {
+      const modal = document.getElementById('mocktest-included-modal');
+      modal.style.display = 'none';
+    }
+    
+    document.getElementById('close-mocktest-included-btn').addEventListener('click', hideMocktestIncludedModal);
+    document.getElementById('mocktest-included-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'mocktest-included-modal') {
+        hideMocktestIncludedModal();
+      }
+    });
+
     function showDownloadModal() {
       const modal = document.getElementById('download-modal');
       modal.style.display = 'flex';
@@ -1165,10 +1182,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b04e21c031af1e0',t:'MTc2NjEyNjE2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
-    <script  src="./script.js"></script>
-
-  </body>
-  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b0db5f43036b307',t:'MTc2NjIxODcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
